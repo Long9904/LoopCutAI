@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* LoopCutAI Design System - Claymorphic/Tangible Style */
+
+@layer base {
+  :root {
+    /* Backgrounds */
+    --background: 0 0% 100%;
+    --foreground: 215 25% 15%;
+
+    /* Cards with tangible style */
+    --card: 0 0% 100%;
+    --card-foreground: 215 25% 15%;
+
+    /* Primary - Professional Indigo */
+    --primary: 238 70% 50%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 238 70% 45%;
+
+    /* Secondary - Soft pastels for categories */
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 215 25% 15%;
+
+    /* Accent colors for different categories */
+    --accent-blue: 199 89% 88%;
+    --accent-pink: 330 100% 90%;
+    --accent-yellow: 43 100% 88%;
+    --accent-green: 142 76% 88%;
+    --accent-purple: 280 100% 90%;
+    --accent-coral: 14 100% 88%;
+
+    /* Muted */
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    /* Destructive */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Borders - Dark slate for tangible effect */
+    --border: 215 25% 15%;
+    --input: 215 25% 15%;
+    --ring: 238 70% 50%;
+
+    /* Tangible component settings */
+    --tangible-border: 1.5px;
+    --tangible-shadow: 4px 4px 0px hsl(var(--border));
+    --tangible-shadow-hover: 6px 6px 0px hsl(var(--border));
+    --tangible-radius: 10px;
+
+    /* Sidebar */
+    --sidebar-background: 43 100% 96%;
+    --sidebar-foreground: 215 25% 15%;
+    --sidebar-primary: 238 70% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 199 89% 88%;
+    --sidebar-accent-foreground: 215 25% 15%;
+    --sidebar-border: 215 25% 15%;
+    --sidebar-ring: 238 70% 50%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+    --card: 222 47% 15%;
+    --card-foreground: 210 40% 98%;
+    --primary: 238 70% 60%;
+    --primary-foreground: 210 40% 98%;
+    --primary-hover: 238 70% 55%;
+    --secondary: 217 33% 18%;
+    --secondary-foreground: 210 40% 98%;
+    
+    /* Accent colors for dark mode */
+    --accent-blue: 199 89% 35%;
+    --accent-pink: 330 100% 35%;
+    --accent-yellow: 43 100% 40%;
+    --accent-green: 142 76% 35%;
+    --accent-purple: 280 100% 40%;
+    --accent-coral: 14 100% 40%;
+    
+    --muted: 217 33% 18%;
+    --muted-foreground: 215 20% 65%;
+    --destructive: 0 63% 50%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217 33% 25%;
+    --input: 217 33% 20%;
+    --ring: 238 70% 60%;
+    
+    /* Sidebar dark mode */
+    --sidebar-background: 222 47% 13%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 238 70% 60%;
+    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-accent: 217 33% 20%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 217 33% 25%;
+    --sidebar-ring: 238 70% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+@layer components {
+  /* Tangible/Claymorphic component base */
+  .tangible {
+    @apply rounded-[10px] bg-white;
+    border: var(--tangible-border) solid hsl(var(--border));
+    box-shadow: var(--tangible-shadow);
+    transition: all 0.2s ease;
+  }
+
+  .tangible:hover {
+    box-shadow: var(--tangible-shadow-hover);
+    transform: translate(-2px, -2px);
+  }
+
+  .tangible-static {
+    @apply rounded-[10px] bg-white;
+    border: var(--tangible-border) solid hsl(var(--border));
+    box-shadow: var(--tangible-shadow);
+  }
+
+  /* Category color variants */
+  .tangible-blue {
+    @apply bg-[hsl(var(--accent-blue))];
+  }
+
+  .tangible-pink {
+    @apply bg-[hsl(var(--accent-pink))];
+  }
+
+  .tangible-yellow {
+    @apply bg-[hsl(var(--accent-yellow))];
+  }
+
+  .tangible-green {
+    @apply bg-[hsl(var(--accent-green))];
+  }
+
+  .tangible-purple {
+    @apply bg-[hsl(var(--accent-purple))];
+  }
+
+  .tangible-coral {
+    @apply bg-[hsl(var(--accent-coral))];
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
