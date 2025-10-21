@@ -17,7 +17,7 @@ import {
   MessageSquare,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { LanguageThemeSwitcher } from '@/components/LanguageThemeSwitcher';
+import { LanguageSwitcher } from '@/components/LanguageSwitcher';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 interface AppLayoutProps {
@@ -38,7 +38,7 @@ const navItems = [
 ];
 
 export const AppLayout = ({ children }: AppLayoutProps) => {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
   const location = useLocation();
   const { t } = useLanguage();
 
@@ -72,7 +72,7 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
 
             {!collapsed && (
               <div className="px-4">
-                <LanguageThemeSwitcher />
+                <LanguageSwitcher />
               </div>
             )}
           </div>

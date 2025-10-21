@@ -89,12 +89,9 @@ export const AIInsightsPage = () => {
         animate={{ opacity: 1, y: 0 }}
         className="flex items-center justify-between"
       >
-        <div>
-          <h1 className="text-4xl font-bold tracking-tight">AI Insights</h1>
-          <p className="mt-2 text-muted-foreground">
-            Personalized recommendations to optimize your subscriptions
-          </p>
-        </div>
+        <p className="text-muted-foreground">
+          Personalized recommendations to optimize your subscriptions
+        </p>
         <TangibleButton size="lg" onClick={handleRefresh} disabled={isAnalyzing}>
           <Sparkles className={`h-5 w-5 ${isAnalyzing ? 'animate-spin' : ''}`} />
           {isAnalyzing ? 'Analyzing...' : 'Refresh Insights'}

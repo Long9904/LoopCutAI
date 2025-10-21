@@ -54,8 +54,7 @@ export const CalendarPage = () => {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        <h1 className="text-4xl font-bold tracking-tight">Payment Calendar</h1>
-        <p className="mt-2 text-muted-foreground">
+        <p className="text-muted-foreground">
           Track your subscription payment schedule
         </p>
       </motion.div>

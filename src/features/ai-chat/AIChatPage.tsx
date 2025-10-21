@@ -93,64 +93,55 @@ export const AIChatPage = () => {
   };
 
   return (
-    <div className="space-y-8">
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-      >
-        <h1 className="text-4xl font-bold tracking-tight">AI Chat</h1>
-        <p className="mt-2 text-muted-foreground">
-          Chat with AI to get insights about your subscriptions
-        </p>
-      </motion.div>
-
+    <div className="space-y-6">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
+        className="h-[calc(100vh-8rem)]"
       >
-        <TangibleCard className="h-[600px] flex flex-col">
+        <TangibleCard className="h-full flex flex-col bg-card">
           {/* Messages */}
-          <div className="flex-1 overflow-y-auto space-y-4 p-4">
+          <div className="flex-1 overflow-y-auto space-y-6 p-6">
             {messages.map((message) => (
               <div
                 key={message.id}
-                className={`flex gap-3 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                className={`flex gap-4 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
               >
                 {message.role === 'assistant' && (
-                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary flex items-center justify-center">
-                    <Bot className="h-5 w-5 text-primary-foreground" />
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary flex items-center justify-center">
+                    <Bot className="h-6 w-6 text-primary-foreground" />
                   </div>
                 )}
                 <div
-                  className={`max-w-[70%] rounded-[10px] border-[1.5px] border-border px-4 py-3 ${
+                  className={`max-w-[75%] rounded-2xl px-5 py-3 ${
                     message.role === 'user'
                       ? 'bg-primary text-primary-foreground'
-                      : 'bg-card text-card-foreground'
+                      : 'bg-muted text-foreground'
                   }`}
                 >
-                  <p className="text-sm whitespace-pre-wrap">{message.content}</p>
-                  <p className="mt-2 text-xs opacity-70">
+                  <p className="text-[15px] leading-relaxed whitespace-pre-wrap">{message.content}</p>
+                  <p className="mt-2 text-xs opacity-60">
                     {message.timestamp.toLocaleTimeString()}
                   </p>
                 </div>
                 {message.role === 'user' && (
-                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-accent-blue flex items-center justify-center">
-                    <User className="h-5 w-5" />
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-accent flex items-center justify-center">
+                    <User className="h-6 w-6" />
                   </div>
                 )}
               </div>
             ))}
             {isLoading && (
-              <div className="flex gap-3 justify-start">
-                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary flex items-center justify-center">
-                  <Bot className="h-5 w-5 text-primary-foreground" />
+              <div className="flex gap-4 justify-start">
+                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary flex items-center justify-center">
+                  <Bot className="h-6 w-6 text-primary-foreground" />
                 </div>
-                <div className="max-w-[70%] rounded-[10px] border-[1.5px] border-border px-4 py-3 bg-card text-card-foreground">
+                <div className="max-w-[75%] rounded-2xl px-5 py-3 bg-muted">
                   <div className="flex gap-1">
-                    <div className="w-2 h-2 bg-primary rounded-full animate-bounce" />
-                    <div className="w-2 h-2 bg-primary rounded-full animate-bounce delay-100" />
-                    <div className="w-2 h-2 bg-primary rounded-full animate-bounce delay-200" />
+                    <div className="w-2 h-2 bg-foreground/60 rounded-full animate-bounce" />
+                    <div className="w-2 h-2 bg-foreground/60 rounded-full animate-bounce delay-100" />
+                    <div className="w-2 h-2 bg-foreground/60 rounded-full animate-bounce delay-200" />
                   </div>
                 </div>
               </div>
@@ -158,20 +149,21 @@ export const AIChatPage = () => {
           </div>
 
           {/* Input */}
-          <div className="border-t border-border p-4">
-            <div className="flex gap-2">
+          <div className="border-t border-border p-6 bg-card">
+            <div className="flex gap-3 items-center">
               <TangibleInput
-                placeholder="Type your message..."
+                placeholder="Message AI..."
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && !isLoading && sendMessage()}
-                className="flex-1"
+                className="flex-1 bg-muted border-0 rounded-3xl px-5 py-3"
                 disabled={isLoading}
               />
               <TangibleButton
                 size="icon"
                 onClick={sendMessage}
                 disabled={isLoading || !input.trim()}
+                className="rounded-full h-11 w-11"
               >
                 <Send className="h-5 w-5" />
               </TangibleButton>

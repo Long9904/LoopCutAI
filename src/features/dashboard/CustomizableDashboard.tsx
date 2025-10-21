@@ -3,7 +3,7 @@ import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, us
 import { arrayMove, SortableContext, sortableKeyboardCoordinates, rectSortingStrategy } from '@dnd-kit/sortable';
 import { motion } from 'framer-motion';
 import { TangibleButton } from '@/components/ui/tangible-button';
-import { Settings, RotateCcw } from 'lucide-react';
+import { Settings, RotateCcw, Plus } from 'lucide-react';
 import { DraggableWidget } from './DraggableWidget';
 import { SpendingWidget } from './widgets/SpendingWidget';
 import { CalendarWidget } from './widgets/CalendarWidget';
@@ -11,26 +11,41 @@ import { UpcomingBillsWidget } from './widgets/UpcomingBillsWidget';
 import { CategoryBreakdownWidget } from './widgets/CategoryBreakdownWidget';
 import { QuickActionsWidget } from './widgets/QuickActionsWidget';
 import { InsightsWidget } from './widgets/InsightsWidget';
+import { SavingsWidget } from './widgets/SavingsWidget';
+import { SubscriptionCountWidget } from './widgets/SubscriptionCountWidget';
 import { toast } from 'sonner';
 import { useLanguage } from '@/contexts/LanguageContext';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
 
 interface Widget {
   id: string;
   component: React.ComponentType;
+  name: string;
 }
 
-const defaultWidgets: Widget[] = [
-  { id: 'spending', component: SpendingWidget },
-  { id: 'calendar', component: CalendarWidget },
-  { id: 'upcoming', component: UpcomingBillsWidget },
-  { id: 'breakdown', component: CategoryBreakdownWidget },
-  { id: 'actions', component: QuickActionsWidget },
-  { id: 'insights', component: InsightsWidget },
+const allAvailableWidgets: Widget[] = [
+  { id: 'spending', component: SpendingWidget, name: 'Monthly Spending' },
+  { id: 'calendar', component: CalendarWidget, name: 'Calendar' },
+  { id: 'upcoming', component: UpcomingBillsWidget, name: 'Upcoming Bills' },
+  { id: 'breakdown', component: CategoryBreakdownWidget, name: 'Category Breakdown' },
+  { id: 'actions', component: QuickActionsWidget, name: 'Quick Actions' },
+  { id: 'insights', component: InsightsWidget, name: 'AI Insights' },
+  { id: 'savings', component: SavingsWidget, name: 'Savings Goal' },
+  { id: 'count', component: SubscriptionCountWidget, name: 'Subscription Count' },
 ];
+
+const defaultWidgets: Widget[] = allAvailableWidgets.slice(0, 6);
 
 export const CustomizableDashboard = () => {
   const [widgets, setWidgets] = useState<Widget[]>(defaultWidgets);
   const [isEditMode, setIsEditMode] = useState(false);
+  const [isAddWidgetOpen, setIsAddWidgetOpen] = useState(false);
   const { t } = useLanguage();
 
   const sensors = useSensors(
@@ -59,6 +74,19 @@ export const CustomizableDashboard = () => {
     toast.success(t('dashboardResetSuccess'));
   };
 
+  const handleAddWidget = (widgetId: string) => {
+    const widgetToAdd = allAvailableWidgets.find((w) => w.id === widgetId);
+    if (widgetToAdd && !widgets.find((w) => w.id === widgetId)) {
+      setWidgets([...widgets, widgetToAdd]);
+      toast.success(`Added ${widgetToAdd.name}`);
+      setIsAddWidgetOpen(false);
+    }
+  };
+
+  const availableToAdd = allAvailableWidgets.filter(
+    (w) => !widgets.find((widget) => widget.id === w.id)
+  );
+
   return (
     <div className="space-y-6">
       {/* Header */}
@@ -67,13 +95,41 @@ export const CustomizableDashboard = () => {
         animate={{ opacity: 1, y: 0 }}
         className="flex items-center justify-between"
       >
-        <div>
-          <h1 className="text-4xl font-bold tracking-tight">{t('dashboard')}</h1>
-          <p className="mt-2 text-muted-foreground">
-            {isEditMode ? t('dragDropCustomize') : t('yourSubscriptionOverview')}
-          </p>
-        </div>
+        <p className="text-muted-foreground">
+          {isEditMode ? t('dragDropCustomize') : t('yourSubscriptionOverview')}
+        </p>
         <div className="flex gap-2">
+          <Dialog open={isAddWidgetOpen} onOpenChange={setIsAddWidgetOpen}>
+            <DialogTrigger asChild>
+              <TangibleButton variant="outline">
+                <Plus className="h-4 w-4" />
+                Add Widget
+              </TangibleButton>
+            </DialogTrigger>
+            <DialogContent className="bg-card">
+              <DialogHeader>
+                <DialogTitle>Add Widget</DialogTitle>
+              </DialogHeader>
+              <div className="grid gap-3 py-4">
+                {availableToAdd.map((widget) => (
+                  <TangibleButton
+                    key={widget.id}
+                    variant="outline"
+                    className="justify-start"
+                    onClick={() => handleAddWidget(widget.id)}
+                  >
+                    <Plus className="h-4 w-4 mr-2" />
+                    {widget.name}
+                  </TangibleButton>
+                ))}
+                {availableToAdd.length === 0 && (
+                  <p className="text-sm text-muted-foreground text-center py-4">
+                    All widgets are already added
+                  </p>
+                )}
+              </div>
+            </DialogContent>
+          </Dialog>
           {isEditMode && (
             <TangibleButton variant="outline" onClick={handleReset}>
               <RotateCcw className="h-4 w-4" />

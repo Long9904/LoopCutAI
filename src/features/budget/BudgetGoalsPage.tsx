@@ -46,12 +46,9 @@ export const BudgetGoalsPage = () => {
         animate={{ opacity: 1, y: 0 }}
         className="flex items-center justify-between"
       >
-        <div>
-          <h1 className="text-4xl font-bold tracking-tight">Budget Goals</h1>
-          <p className="mt-2 text-muted-foreground">
-            Set spending limits and track your progress
-          </p>
-        </div>
+        <p className="text-muted-foreground">
+          Set spending limits and track your progress
+        </p>
         <TangibleButton size="lg" onClick={() => setShowAddForm(!showAddForm)}>
           <Plus className="h-5 w-5" />
           Add Budget Goal

@@ -6,7 +6,6 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AppLayout } from "./components/layout/AppLayout";
 import { AIChatbot } from "./components/AIchatbot";
 import { LanguageProvider } from "./contexts/LanguageContext";
-import { ThemeProvider } from "./contexts/ThemeContext";
 
 // Feature Pages
 import { CustomizableDashboard } from "./features/dashboard/CustomizableDashboard";
@@ -28,12 +27,11 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <ThemeProvider>
-      <LanguageProvider>
-        <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <BrowserRouter>
+    <LanguageProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
         <Routes>
           {/* Auth Routes (no layout) */}
           <Route path="/login" element={<LoginPage />} />
@@ -136,9 +134,8 @@ const App = () => (
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
-        </TooltipProvider>
-      </LanguageProvider>
-    </ThemeProvider>
+      </TooltipProvider>
+    </LanguageProvider>
   </QueryClientProvider>
 );
 

@@ -40,12 +40,9 @@ export const NotificationsPage = () => {
         animate={{ opacity: 1, y: 0 }}
         className="flex items-center justify-between"
       >
-        <div>
-          <h1 className="text-4xl font-bold tracking-tight">Notifications</h1>
-          <p className="mt-2 text-muted-foreground">
-            Stay updated with your subscription activity
-          </p>
-        </div>
+        <p className="text-muted-foreground">
+          Stay updated with your subscription activity
+        </p>
         <TangibleButton variant="outline">
           <CheckCircle className="h-5 w-5" />
           Mark All Read

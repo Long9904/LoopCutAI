@@ -50,12 +50,9 @@ export const SubscriptionsPage = () => {
         animate={{ opacity: 1, y: 0 }}
         className="flex items-center justify-between"
       >
-        <div>
-          <h1 className="text-4xl font-bold tracking-tight">{t('subscriptions')}</h1>
-          <p className="mt-2 text-muted-foreground">
-            {t('manageSubscriptions')}
-          </p>
-        </div>
+        <p className="text-muted-foreground">
+          {t('manageSubscriptions')}
+        </p>
         <TangibleButton size="lg" onClick={() => setIsAddDialogOpen(true)}>
           <Plus className="h-5 w-5" />
           {t('addSubscription')}
