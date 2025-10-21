@@ -41,12 +41,7 @@ export const ProfileUpdate = ({ isOpen, onClose }: ProfileUpdateProps) => {
           />
 
           {/* Modal - FIX: Căn giữa màn hình */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[calc(100%-2rem)] md:w-full md:max-w-4xl max-h-[90vh] z-50"
-          >
+          <motion.div className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-1/2 h-4/5 z-50">
             <div className="bg-card rounded-2xl shadow-2xl border border-border overflow-hidden h-full flex flex-col">
               {/* Header */}
               <div className="flex items-center justify-between p-6 border-b border-border">

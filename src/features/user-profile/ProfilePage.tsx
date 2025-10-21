@@ -80,13 +80,13 @@ export const ProfilePage = () => {
               <TangibleButton onClick={() => setIsEditOpen(true)}>
                 Edit Profile
               </TangibleButton>
+              {/* Profile Update Modal */}
+              <ProfileUpdate
+                isOpen={isEditOpen}
+                onClose={() => setIsEditOpen(false)}
+              />
             </div>
           </div>
-          {/* Profile Update Modal */}
-          <ProfileUpdate
-            isOpen={isEditOpen}
-            onClose={() => setIsEditOpen(false)}
-          />
         </TangibleCard>
       </motion.div>
 
@@ -148,6 +148,7 @@ export const ProfilePage = () => {
             <Plus className="h-4 w-4" />
             Add Profile
           </TangibleButton>
+          F
         </div>
 
         <div className="grid gap-4 md:grid-cols-2">
