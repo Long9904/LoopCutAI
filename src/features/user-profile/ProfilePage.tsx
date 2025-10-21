@@ -10,12 +10,13 @@ import {
   Calendar,
 } from "lucide-react";
 import { useAppStore } from "@/store/appStore";
-import { useNavigate } from "react-router-dom";
+import { ProfileUpdate } from "./ProfileUpdate";
+import { useState } from "react";
 
 export const ProfilePage = () => {
   const { profiles, currentProfile, setCurrentProfile } = useAppStore();
+  const [isEditOpen, setIsEditOpen] = useState(false);
 
-  const navigate = useNavigate();
   return (
     <div className="max-w-4xl mx-auto space-y-6">
       {/* Cover & Profile Picture */}
@@ -76,11 +77,16 @@ export const ProfilePage = () => {
                 </div>
               </div>
 
-              <TangibleButton onClick={() => navigate("/profile/edit")}>
+              <TangibleButton onClick={() => setIsEditOpen(true)}>
                 Edit Profile
               </TangibleButton>
             </div>
           </div>
+          {/* Profile Update Modal */}
+          <ProfileUpdate
+            isOpen={isEditOpen}
+            onClose={() => setIsEditOpen(false)}
+          />
         </TangibleCard>
       </motion.div>
 
