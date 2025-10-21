@@ -125,11 +125,11 @@ export const BudgetGoalsPage = () => {
                     <h3 className="text-xl font-bold">{goal.category}</h3>
                     <p className="text-sm text-muted-foreground">Monthly budget</p>
                   </div>
-                  <div className="rounded-full bg-white/50 p-2">
+                  <div className="rounded-full bg-foreground/10 p-2 backdrop-blur-sm">
                     {percentage >= 90 ? (
                       <AlertTriangle className="h-5 w-5 text-destructive" />
                     ) : (
-                      <Target className="h-5 w-5" />
+                      <Target className="h-5 w-5 text-foreground" />
                     )}
                   </div>
                 </div>
@@ -154,9 +154,9 @@ export const BudgetGoalsPage = () => {
                   </div>
 
                   {percentage >= 75 && (
-                    <div className={`flex items-center gap-2 p-2 rounded-md ${percentage >= 90 ? 'bg-destructive/10' : 'bg-orange-100'}`}>
-                      <TrendingUp className={`h-4 w-4 ${percentage >= 90 ? 'text-destructive' : 'text-orange-600'}`} />
-                      <span className={`text-xs ${percentage >= 90 ? 'text-destructive' : 'text-orange-600'}`}>
+                    <div className={`flex items-center gap-2 p-2 rounded-md backdrop-blur-sm ${percentage >= 90 ? 'bg-destructive/20 border border-destructive/30' : 'bg-orange-500/20 border border-orange-500/30'}`}>
+                      <TrendingUp className={`h-4 w-4 ${percentage >= 90 ? 'text-destructive' : 'text-orange-400 dark:text-orange-300'}`} />
+                      <span className={`text-xs font-medium ${percentage >= 90 ? 'text-destructive' : 'text-orange-700 dark:text-orange-200'}`}>
                         {percentage >= 90
                           ? '⚠️ Budget limit approaching!'
                           : '⚡ You\'re getting close to your limit'}
@@ -173,8 +173,8 @@ export const BudgetGoalsPage = () => {
       {/* Overall Summary */}
       <TangibleCard color="green">
         <div className="flex items-center gap-4">
-          <div className="rounded-full bg-white/50 p-4">
-            <Target className="h-8 w-8" />
+          <div className="rounded-full bg-foreground/10 p-4 backdrop-blur-sm">
+            <Target className="h-8 w-8 text-foreground" />
           </div>
           <div className="flex-1">
             <h3 className="text-2xl font-bold">Budget Performance</h3>

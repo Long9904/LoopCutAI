@@ -62,7 +62,7 @@ export const NotificationsPage = () => {
           >
             <TangibleCard color={getColor(notification.type) as any}>
               <div className="flex items-start gap-4">
-                <div className="rounded-full bg-white/50 p-3">
+                <div className="rounded-full bg-foreground/10 p-3 backdrop-blur-sm">
                   {getIcon(notification.type)}
                 </div>
                 <div className="flex-1">

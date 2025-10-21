@@ -18,8 +18,8 @@ export const InsightsWidget = () => {
   return (
     <TangibleCard color="pink">
       <div className="flex items-start gap-3">
-        <div className="rounded-full bg-white/50 p-2">
-          <Sparkles className="h-5 w-5" />
+        <div className="rounded-full bg-foreground/10 p-2 backdrop-blur-sm">
+          <Sparkles className="h-5 w-5 text-foreground" />
         </div>
         <div>
           <h3 className="text-lg font-bold">AI Insights</h3>

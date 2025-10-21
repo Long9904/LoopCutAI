@@ -104,7 +104,7 @@ export const AIChatbot = () => {
                 <h3 className="text-lg font-bold">🤖 Trợ Lý AI</h3>
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="rounded-full p-1 hover:bg-white/50 transition-colors"
+                  className="rounded-full p-1 hover:bg-foreground/10 transition-colors"
                 >
                   <X className="h-5 w-5" />
                 </button>
@@ -118,7 +118,7 @@ export const AIChatbot = () => {
                   >
                     <div
                       className={`max-w-[80%] rounded-[8px] border-[1.5px] border-border px-4 py-2 ${
-                        message.sender === 'user' ? 'bg-primary text-primary-foreground' : 'bg-white'
+                        message.sender === 'user' ? 'bg-primary text-primary-foreground' : 'bg-card text-card-foreground'
                       }`}
                     >
                       <p className="text-sm">{message.text}</p>

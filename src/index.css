@@ -45,6 +45,10 @@
     --border: 215 25% 15%;
     --input: 215 25% 15%;
     --ring: 238 70% 50%;
+    
+    /* Popover */
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 25% 15%;
 
     /* Tangible component settings */
     --tangible-border: 1.5px;
@@ -91,6 +95,10 @@
     --border: 217 33% 25%;
     --input: 217 33% 20%;
     --ring: 238 70% 60%;
+    
+    /* Popover dark mode */
+    --popover: 222 47% 15%;
+    --popover-foreground: 210 40% 98%;
     
     /* Sidebar dark mode */
     --sidebar-background: 222 47% 13%;

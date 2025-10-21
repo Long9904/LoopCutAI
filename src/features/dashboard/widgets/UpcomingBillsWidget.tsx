@@ -34,8 +34,8 @@ export const UpcomingBillsWidget = () => {
             <p className="mt-2 text-lg">No upcoming bills</p>
           )}
         </div>
-        <div className="rounded-full bg-white/50 p-3">
-          <AlertCircle className="h-6 w-6" />
+        <div className="rounded-full bg-foreground/10 p-3 backdrop-blur-sm">
+          <AlertCircle className="h-6 w-6 text-foreground" />
         </div>
       </div>
     </TangibleCard>

@@ -155,14 +155,14 @@ export const ReportsPage = () => {
         <TangibleCard color="yellow">
           <h3 className="mb-4 text-xl font-bold">AI Insights</h3>
           <div className="space-y-4">
-            <div className="rounded-[8px] border-[1.5px] border-border bg-white p-4">
+            <div className="rounded-[8px] border-[1.5px] border-border bg-card p-4">
               <h4 className="font-semibold">Software Spending Increased</h4>
               <p className="mt-2 text-sm text-muted-foreground">
                 Your 'Software' category spending has increased by 15% this month, primarily due to
                 Adobe Creative Cloud. Consider reviewing if all features are being utilized.
               </p>
             </div>
-            <div className="rounded-[8px] border-[1.5px] border-border bg-white p-4">
+            <div className="rounded-[8px] border-[1.5px] border-border bg-card p-4">
               <h4 className="font-semibold">Potential Savings Detected</h4>
               <p className="mt-2 text-sm text-muted-foreground">
                 You're subscribed to both Spotify and YouTube Premium. YouTube Premium includes

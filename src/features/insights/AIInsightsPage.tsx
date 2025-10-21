@@ -104,8 +104,8 @@ export const AIInsightsPage = () => {
       {/* Summary Card */}
       <TangibleCard color="yellow">
         <div className="flex items-center gap-4">
-          <div className="rounded-full bg-white/50 p-4">
-            <Sparkles className="h-8 w-8" />
+          <div className="rounded-full bg-foreground/10 p-4 backdrop-blur-sm">
+            <Sparkles className="h-8 w-8 text-foreground" />
           </div>
           <div className="flex-1">
             <h3 className="text-2xl font-bold">💰 Potential Savings: ${totalSavingsPotential.toFixed(2)}/year</h3>
@@ -129,8 +129,8 @@ export const AIInsightsPage = () => {
             >
               <TangibleCard color={insight.color}>
                 <div className="flex items-start gap-4">
-                  <div className="rounded-full bg-white/50 p-3">
-                    <Icon className="h-6 w-6" />
+                  <div className="rounded-full bg-foreground/10 p-3 backdrop-blur-sm">
+                    <Icon className="h-6 w-6 text-foreground" />
                   </div>
                   <div className="flex-1">
                     <div className="flex items-start justify-between">
@@ -139,9 +139,9 @@ export const AIInsightsPage = () => {
                         <p className="mt-2 text-sm leading-relaxed">{insight.description}</p>
                       </div>
                       {insight.impact > 0 && (
-                        <div className="ml-4 rounded-[8px] bg-white/50 px-3 py-1 text-right">
+                        <div className="ml-4 rounded-[8px] bg-foreground/10 px-3 py-1 text-right backdrop-blur-sm">
                           <p className="text-xs font-medium text-muted-foreground">Save</p>
-                          <p className="text-lg font-bold text-green-600">
+                          <p className="text-lg font-bold text-green-600 dark:text-green-400">
                             ${insight.impact.toFixed(2)}
                           </p>
                         </div>
@@ -167,8 +167,8 @@ export const AIInsightsPage = () => {
       {/* AI Explanation */}
       <TangibleCard color="blue">
         <div className="flex items-start gap-3">
-          <div className="rounded-full bg-white/50 p-2">
-            <Lightbulb className="h-5 w-5" />
+          <div className="rounded-full bg-foreground/10 p-2 backdrop-blur-sm">
+            <Lightbulb className="h-5 w-5 text-foreground" />
           </div>
           <div>
             <h3 className="text-lg font-bold">How AI Insights Work</h3>

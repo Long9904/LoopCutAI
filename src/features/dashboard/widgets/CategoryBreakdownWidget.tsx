@@ -36,8 +36,8 @@ export const CategoryBreakdownWidget = () => {
             <p className="mt-2 text-lg">No data</p>
           )}
         </div>
-        <div className="rounded-full bg-white/50 p-3">
-          <PieChart className="h-6 w-6" />
+        <div className="rounded-full bg-foreground/10 p-3 backdrop-blur-sm">
+          <PieChart className="h-6 w-6 text-foreground" />
         </div>
       </div>
       <div className="mt-4 space-y-2">

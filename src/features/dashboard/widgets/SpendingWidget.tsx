@@ -27,8 +27,8 @@ export const SpendingWidget = () => {
             <span>On track this month</span>
           </p>
         </div>
-        <div className="rounded-full bg-white/50 p-3">
-          <DollarSign className="h-6 w-6" />
+        <div className="rounded-full bg-foreground/10 p-3 backdrop-blur-sm">
+          <DollarSign className="h-6 w-6 text-foreground" />
         </div>
       </div>
     </TangibleCard>

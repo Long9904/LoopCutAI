@@ -22,7 +22,7 @@ export const ProfilePage = () => {
           <div className="px-6 pb-6">
             {/* Avatar */}
             <div className="relative -mt-16 mb-4">
-              <div className="w-32 h-32 rounded-full border-[3px] border-white bg-white flex items-center justify-center">
+              <div className="w-32 h-32 rounded-full border-[3px] border-card bg-card flex items-center justify-center shadow-lg">
                 <User className="h-16 w-16 text-primary" />
               </div>
             </div>
@@ -111,7 +111,7 @@ export const ProfilePage = () => {
                 </p>
               </div>
             </div>
-            <div className="rounded-full bg-white/50 px-4 py-2 text-sm font-medium">
+            <div className="rounded-full bg-foreground/10 px-4 py-2 text-sm font-medium backdrop-blur-sm">
               Active
             </div>
           </div>
@@ -146,9 +146,9 @@ export const ProfilePage = () => {
               >
                 <div className="flex items-start justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="rounded-full bg-white/50 p-3">
+                    <div className="rounded-full bg-foreground/10 p-3 backdrop-blur-sm">
                       {profile.type === 'personal' ? (
-                        <User className="h-6 w-6" />
+                        <User className="h-6 w-6 text-foreground" />
                       ) : (
                         <Users className="h-6 w-6" />
                       )}

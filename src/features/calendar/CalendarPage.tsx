@@ -106,7 +106,7 @@ export const CalendarPage = () => {
                 className={`min-h-[100px] rounded-[10px] border-[1.5px] border-border p-2 ${
                   isToday
                     ? 'bg-primary/10 shadow-[2px_2px_0px_hsl(var(--border))]'
-                    : 'bg-white'
+                    : 'bg-card'
                 }`}
               >
                 <div className={`text-sm font-semibold ${isToday ? 'text-primary' : ''}`}>

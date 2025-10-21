@@ -114,7 +114,7 @@ export const SubscriptionsPage = () => {
                       {sub.category}
                     </p>
                   </div>
-                  <div className="rounded-full bg-white/50 px-3 py-1 text-xs font-medium">
+                  <div className="rounded-full bg-foreground/10 px-3 py-1 text-xs font-medium backdrop-blur-sm">
                     {getDaysUntil(sub.nextBillDate)}d
                   </div>
                 </div>

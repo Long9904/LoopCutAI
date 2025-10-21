@@ -25,8 +25,8 @@ export const CalendarWidget = () => {
           <p className="text-sm font-medium text-muted-foreground">Next 7 Days</p>
           <h3 className="mt-2 text-3xl font-bold">{upcomingPayments.length} Payments</h3>
         </div>
-        <div className="rounded-full bg-white/50 p-3">
-          <Calendar className="h-6 w-6" />
+        <div className="rounded-full bg-foreground/10 p-3 backdrop-blur-sm">
+          <Calendar className="h-6 w-6 text-foreground" />
         </div>
       </div>
       <div className="mt-4 space-y-2">

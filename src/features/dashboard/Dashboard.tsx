@@ -162,7 +162,7 @@ export const Dashboard = () => {
                   <span className="text-2xl font-bold">
                     ${sub.cost.toFixed(2)}
                   </span>
-                  <span className="rounded-full bg-white/50 px-3 py-1 text-xs font-medium capitalize">
+                  <span className="rounded-full bg-foreground/10 px-3 py-1 text-xs font-medium capitalize backdrop-blur-sm">
                     {sub.billingCycle}
                   </span>
                 </div>
