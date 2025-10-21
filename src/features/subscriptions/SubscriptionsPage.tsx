@@ -8,11 +8,9 @@ import { Plus, Search, Calendar, DollarSign, Tag } from 'lucide-react';
 import { useAppStore } from '@/store/appStore';
 import { AddSubscriptionDialog } from './AddSubscriptionDialog';
 import { toast } from 'sonner';
-import { useLanguage } from '@/contexts/LanguageContext';
 
 export const SubscriptionsPage = () => {
   const { subscriptions, currentProfile, deleteSubscription } = useAppStore();
-  const { t } = useLanguage();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
@@ -40,7 +38,7 @@ export const SubscriptionsPage = () => {
     if (index > -1) {
       currentProfile.subscriptions.splice(index, 1);
     }
-    toast.success(`${t('deleted')} ${name}`);
+    toast.success(`Deleted ${name}`);
   };
 
   return (
@@ -51,11 +49,11 @@ export const SubscriptionsPage = () => {
         className="flex items-center justify-between"
       >
         <p className="text-muted-foreground">
-          {t('manageSubscriptions')}
+          Manage all your subscriptions in one place
         </p>
         <TangibleButton size="lg" onClick={() => setIsAddDialogOpen(true)}>
           <Plus className="h-5 w-5" />
-          {t('addSubscription')}
+          Add Subscription
         </TangibleButton>
       </motion.div>
 
@@ -69,7 +67,7 @@ export const SubscriptionsPage = () => {
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
           <TangibleInput
-            placeholder={t('searchSubscriptions')}
+            placeholder="Search subscriptions..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="pl-10"
@@ -85,7 +83,7 @@ export const SubscriptionsPage = () => {
               onClick={() => setSelectedCategory(category)}
               className="capitalize whitespace-nowrap"
             >
-              {t(category)}
+              {category}
             </TangibleButton>
           ))}
         </div>
@@ -126,7 +124,7 @@ export const SubscriptionsPage = () => {
                       onTagsChange={(newTags) => {
                         setTags({ ...tags, [sub.id]: newTags });
                       }}
-                      placeholder={t('addTags')}
+                      placeholder="Add tags (press Enter)..."
                     />
                   ) : (
                     <div className="flex flex-wrap gap-2 min-h-[32px] items-center">
@@ -148,7 +146,7 @@ export const SubscriptionsPage = () => {
                           )}
                         </>
                       ) : (
-                        <span className="text-xs text-muted-foreground">{t('noTags')}</span>
+                        <span className="text-xs text-muted-foreground">No tags</span>
                       )}
                       <TangibleButton
                         variant="ghost"
@@ -156,7 +154,7 @@ export const SubscriptionsPage = () => {
                         onClick={() => setEditingTags(sub.id)}
                         className="h-6 text-xs"
                       >
-                        {t('editTags')}
+                        Edit Tags
                       </TangibleButton>
                     </div>
                   )}
@@ -167,7 +165,7 @@ export const SubscriptionsPage = () => {
                       onClick={() => setEditingTags(null)}
                       className="mt-2 w-full"
                     >
-                      {t('done')}
+                      Done
                     </TangibleButton>
                   )}
                 </div>
@@ -185,13 +183,13 @@ export const SubscriptionsPage = () => {
 
                   <div className="flex items-center gap-2 text-sm">
                     <Calendar className="h-4 w-4 text-muted-foreground" />
-                    <span>{t('nextBill')}: {new Date(sub.nextBillDate).toLocaleDateString()}</span>
+                    <span>Next bill: {new Date(sub.nextBillDate).toLocaleDateString()}</span>
                   </div>
                 </div>
 
                 <div className="mt-6 flex gap-2">
                   <TangibleButton variant="outline" size="sm" className="flex-1">
-                    {t('edit')}
+                    Edit
                   </TangibleButton>
                   <TangibleButton 
                     variant="destructive" 
@@ -199,7 +197,7 @@ export const SubscriptionsPage = () => {
                     className="flex-1"
                     onClick={() => handleDeleteSubscription(sub.id, sub.name)}
                   >
-                    {t('delete')}
+                    Delete
                   </TangibleButton>
                 </div>
               </TangibleCard>
@@ -214,13 +212,13 @@ export const SubscriptionsPage = () => {
           animate={{ opacity: 1 }}
           className="py-12 text-center"
         >
-          <p className="text-lg text-muted-foreground">{t('noSubscriptionsFound')}</p>
+          <p className="text-lg text-muted-foreground">No subscriptions found</p>
           <TangibleButton 
             className="mt-4"
             onClick={() => setIsAddDialogOpen(true)}
           >
             <Plus className="h-4 w-4" />
-            {t('addFirstSubscription')}
+            Add Your First Subscription
           </TangibleButton>
         </motion.div>
       )}

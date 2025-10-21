@@ -14,7 +14,6 @@ import { InsightsWidget } from './widgets/InsightsWidget';
 import { SavingsWidget } from './widgets/SavingsWidget';
 import { SubscriptionCountWidget } from './widgets/SubscriptionCountWidget';
 import { toast } from 'sonner';
-import { useLanguage } from '@/contexts/LanguageContext';
 import {
   Dialog,
   DialogContent,
@@ -46,7 +45,6 @@ export const CustomizableDashboard = () => {
   const [widgets, setWidgets] = useState<Widget[]>(defaultWidgets);
   const [isEditMode, setIsEditMode] = useState(false);
   const [isAddWidgetOpen, setIsAddWidgetOpen] = useState(false);
-  const { t } = useLanguage();
 
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -64,14 +62,14 @@ export const CustomizableDashboard = () => {
         const newIndex = items.findIndex((item) => item.id === over.id);
         return arrayMove(items, oldIndex, newIndex);
       });
-      toast.success(t('widgetPositionUpdated'));
+      toast.success('Widget position updated');
     }
   };
 
   const handleReset = () => {
     setWidgets(defaultWidgets);
     setIsEditMode(false);
-    toast.success(t('dashboardResetSuccess'));
+    toast.success('Dashboard reset to default layout');
   };
 
   const handleAddWidget = (widgetId: string) => {
@@ -96,7 +94,7 @@ export const CustomizableDashboard = () => {
         className="flex items-center justify-between"
       >
         <p className="text-muted-foreground">
-          {isEditMode ? t('dragDropCustomize') : t('yourSubscriptionOverview')}
+          {isEditMode ? '🎨 Drag & drop widgets to customize' : 'Your subscription overview'}
         </p>
         <div className="flex gap-2">
           <Dialog open={isAddWidgetOpen} onOpenChange={setIsAddWidgetOpen}>
@@ -133,18 +131,18 @@ export const CustomizableDashboard = () => {
           {isEditMode && (
             <TangibleButton variant="outline" onClick={handleReset}>
               <RotateCcw className="h-4 w-4" />
-              {t('resetLayout')}
+              Reset Layout
             </TangibleButton>
           )}
           <TangibleButton
             variant={isEditMode ? 'default' : 'secondary'}
             onClick={() => {
               setIsEditMode(!isEditMode);
-              toast.info(isEditMode ? t('editModeDisabled') : t('editModeEnabled'));
+              toast.info(isEditMode ? 'Edit mode disabled' : 'Edit mode enabled - drag widgets to reorder');
             }}
           >
             <Settings className="h-4 w-4" />
-            {isEditMode ? t('done') : t('customize')}
+            {isEditMode ? 'Done' : 'Customize'}
           </TangibleButton>
         </div>
       </motion.div>

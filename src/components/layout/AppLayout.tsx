@@ -17,30 +17,27 @@ import {
   MessageSquare,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { LanguageSwitcher } from '@/components/LanguageSwitcher';
-import { useLanguage } from '@/contexts/LanguageContext';
 
 interface AppLayoutProps {
   children: ReactNode;
 }
 
 const navItems = [
-  { icon: LayoutDashboard, label: 'dashboard', path: '/' },
-  { icon: CreditCard, label: 'subscriptions', path: '/subscriptions' },
-  { icon: Calendar, label: 'calendar', path: '/calendar' },
-  { icon: BarChart3, label: 'reports', path: '/reports' },
-  { icon: Target, label: 'budgetGoals', path: '/budget' },
-  { icon: Sparkles, label: 'aiInsights', path: '/insights' },
-  { icon: MessageSquare, label: 'aiChat', path: '/ai-chat' },
-  { icon: Bell, label: 'notifications', path: '/notifications' },
-  { icon: User, label: 'profile', path: '/profile' },
-  { icon: Settings, label: 'settings', path: '/settings' },
+  { icon: LayoutDashboard, label: 'Dashboard', path: '/' },
+  { icon: CreditCard, label: 'Subscriptions', path: '/subscriptions' },
+  { icon: Calendar, label: 'Calendar', path: '/calendar' },
+  { icon: BarChart3, label: 'Reports', path: '/reports' },
+  { icon: Target, label: 'Budget Goals', path: '/budget' },
+  { icon: Sparkles, label: 'AI Insights', path: '/insights' },
+  { icon: MessageSquare, label: 'AI Chat', path: '/ai-chat' },
+  { icon: Bell, label: 'Notifications', path: '/notifications' },
+  { icon: User, label: 'Profile', path: '/profile' },
+  { icon: Settings, label: 'Settings', path: '/settings' },
 ];
 
 export const AppLayout = ({ children }: AppLayoutProps) => {
   const [collapsed, setCollapsed] = useState(true);
   const location = useLocation();
-  const { t } = useLanguage();
 
   return (
     <div className="flex min-h-screen w-full bg-background">
@@ -69,12 +66,6 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
                 {collapsed ? <Menu className="h-5 w-5" /> : <X className="h-5 w-5" />}
               </button>
             </div>
-
-            {!collapsed && (
-              <div className="px-4">
-                <LanguageSwitcher />
-              </div>
-            )}
           </div>
 
           {/* Navigation */}
@@ -96,7 +87,7 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
                     )}
                   >
                     <Icon className="h-5 w-5 flex-shrink-0" />
-                    {!collapsed && <span>{t(item.label)}</span>}
+                    {!collapsed && <span>{item.label}</span>}
                   </motion.div>
                 </Link>
               );

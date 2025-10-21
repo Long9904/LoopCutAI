@@ -5,7 +5,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AppLayout } from "./components/layout/AppLayout";
 import { AIChatbot } from "./components/AIchatbot";
-import { LanguageProvider } from "./contexts/LanguageContext";
 
 // Feature Pages
 import { CustomizableDashboard } from "./features/dashboard/CustomizableDashboard";
@@ -27,11 +26,10 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <LanguageProvider>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
+      <BrowserRouter>
         <Routes>
           {/* Auth Routes (no layout) */}
           <Route path="/login" element={<LoginPage />} />
@@ -134,8 +132,7 @@ const App = () => (
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
-      </TooltipProvider>
-    </LanguageProvider>
+    </TooltipProvider>
   </QueryClientProvider>
 );
 
