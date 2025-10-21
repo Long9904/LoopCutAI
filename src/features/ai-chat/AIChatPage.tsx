@@ -1,15 +1,16 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { TangibleCard } from '@/components/ui/tangible-card';
-import { TangibleButton } from '@/components/ui/tangible-button';
-import { TangibleInput } from '@/components/ui/tangible-input';
-import { Send, Bot, User } from 'lucide-react';
-import { toast } from 'sonner';
-import { GEMINI_CONFIG } from '@/config/gemini';
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { TangibleCard } from "@/components/ui/tangible-card";
+import { TangibleButton } from "@/components/ui/tangible-button";
+import { TangibleInput } from "@/components/ui/tangible-input";
+import { Send, Bot, User } from "lucide-react";
+import { toast } from "sonner";
+import { GEMINI_CONFIG } from "@/config/gemini";
+import { chatWithGemini } from "./geminiAPI";
 
 interface Message {
   id: string;
-  role: 'user' | 'assistant';
+  role: "user" | "assistant";
   content: string;
   timestamp: Date;
 }
@@ -17,13 +18,14 @@ interface Message {
 export const AIChatPage = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
-      id: '1',
-      role: 'assistant',
-      content: 'Hello! I\'m your AI assistant powered by Gemini. I can help you analyze your subscriptions, provide insights, and answer questions. How can I help you today?',
+      id: "1",
+      role: "assistant",
+      content:
+        "Hello! I'm your AI assistant powered by Gemini. I can help you analyze your subscriptions, provide insights, and answer questions. How can I help you today?",
       timestamp: new Date(),
     },
   ]);
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const sendMessage = async () => {
@@ -31,62 +33,39 @@ export const AIChatPage = () => {
 
     // Check if API key is configured
     if (!GEMINI_CONFIG.apiKey) {
-      toast.error('Please configure your Gemini API key in src/config/gemini.ts');
+      toast.error(
+        "Please configure your Gemini API key in src/config/gemini.ts"
+      );
       return;
     }
 
     const userMessage: Message = {
       id: Date.now().toString(),
-      role: 'user',
+      role: "user",
       content: input,
       timestamp: new Date(),
     };
 
     setMessages((prev) => [...prev, userMessage]);
-    setInput('');
+    setInput("");
     setIsLoading(true);
 
     try {
       // Call Gemini API
-      const response = await fetch(
-        `${GEMINI_CONFIG.baseUrl}/models/${GEMINI_CONFIG.model}:generateContent?key=${GEMINI_CONFIG.apiKey}`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            contents: [
-              {
-                parts: [
-                  {
-                    text: input,
-                  },
-                ],
-              },
-            ],
-          }),
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error('Failed to get response from Gemini');
-      }
-
-      const data = await response.json();
-      const aiResponse = data.candidates[0].content.parts[0].text;
+      const response = chatWithGemini(input);
+      const aiResponse = await response;
 
       const assistantMessage: Message = {
         id: (Date.now() + 1).toString(),
-        role: 'assistant',
+        role: "assistant",
         content: aiResponse,
         timestamp: new Date(),
       };
 
       setMessages((prev) => [...prev, assistantMessage]);
     } catch (error) {
-      console.error('Error:', error);
-      toast.error('Failed to get response from AI. Please check your API key.');
+      console.error("Error:", error);
+      toast.error("Failed to get response from AI. Please check your API key.");
     } finally {
       setIsLoading(false);
     }
@@ -106,26 +85,30 @@ export const AIChatPage = () => {
             {messages.map((message) => (
               <div
                 key={message.id}
-                className={`flex gap-4 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                className={`flex gap-4 ${
+                  message.role === "user" ? "justify-end" : "justify-start"
+                }`}
               >
-                {message.role === 'assistant' && (
+                {message.role === "assistant" && (
                   <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary flex items-center justify-center">
                     <Bot className="h-6 w-6 text-primary-foreground" />
                   </div>
                 )}
                 <div
                   className={`max-w-[75%] rounded-2xl px-5 py-3 ${
-                    message.role === 'user'
-                      ? 'bg-primary text-primary-foreground'
-                      : 'bg-muted text-foreground'
+                    message.role === "user"
+                      ? "bg-primary text-primary-foreground"
+                      : "bg-muted text-foreground"
                   }`}
                 >
-                  <p className="text-[15px] leading-relaxed whitespace-pre-wrap">{message.content}</p>
+                  <p className="text-[15px] leading-relaxed whitespace-pre-wrap">
+                    {message.content}
+                  </p>
                   <p className="mt-2 text-xs opacity-60">
                     {message.timestamp.toLocaleTimeString()}
                   </p>
                 </div>
-                {message.role === 'user' && (
+                {message.role === "user" && (
                   <div className="flex-shrink-0 w-10 h-10 rounded-full bg-accent flex items-center justify-center">
                     <User className="h-6 w-6" />
                   </div>
@@ -155,7 +138,9 @@ export const AIChatPage = () => {
                 placeholder="Message AI..."
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                onKeyPress={(e) => e.key === 'Enter' && !isLoading && sendMessage()}
+                onKeyPress={(e) =>
+                  e.key === "Enter" && !isLoading && sendMessage()
+                }
                 className="flex-1 bg-muted border-0 rounded-3xl px-5 py-3"
                 disabled={isLoading}
               />
