@@ -1,12 +1,21 @@
-import { motion } from 'framer-motion';
-import { TangibleCard } from '@/components/ui/tangible-card';
-import { TangibleButton } from '@/components/ui/tangible-button';
-import { User, Users, Plus, MapPin, Link as LinkIcon, Calendar } from 'lucide-react';
-import { useAppStore } from '@/store/appStore';
+import { motion } from "framer-motion";
+import { TangibleCard } from "@/components/ui/tangible-card";
+import { TangibleButton } from "@/components/ui/tangible-button";
+import {
+  User,
+  Users,
+  Plus,
+  MapPin,
+  Link as LinkIcon,
+  Calendar,
+} from "lucide-react";
+import { useAppStore } from "@/store/appStore";
+import { useNavigate } from "react-router-dom";
 
 export const ProfilePage = () => {
   const { profiles, currentProfile, setCurrentProfile } = useAppStore();
 
+  const navigate = useNavigate();
   return (
     <div className="max-w-4xl mx-auto space-y-6">
       {/* Cover & Profile Picture */}
@@ -17,7 +26,7 @@ export const ProfilePage = () => {
         <TangibleCard className="p-0 overflow-hidden">
           {/* Cover Image */}
           <div className="h-48 bg-gradient-to-r from-primary to-accent-blue" />
-          
+
           {/* Profile Info */}
           <div className="px-6 pb-6">
             {/* Avatar */}
@@ -32,9 +41,10 @@ export const ProfilePage = () => {
               <div>
                 <h1 className="text-2xl font-bold">Alex Johnson</h1>
                 <p className="text-muted-foreground">@alexjohnson</p>
-                
+
                 <p className="mt-3 text-foreground">
-                  Subscription management enthusiast | Tech lover | Coffee addict ☕
+                  Subscription management enthusiast | Tech lover | Coffee
+                  addict ☕
                 </p>
 
                 <div className="flex flex-wrap gap-4 mt-4 text-sm text-muted-foreground">
@@ -54,17 +64,19 @@ export const ProfilePage = () => {
 
                 <div className="flex gap-4 mt-4 text-sm">
                   <div>
-                    <span className="font-bold">{profiles.length}</span>{' '}
+                    <span className="font-bold">{profiles.length}</span>{" "}
                     <span className="text-muted-foreground">Profiles</span>
                   </div>
                   <div>
-                    <span className="font-bold">{currentProfile.subscriptions.length}</span>{' '}
+                    <span className="font-bold">
+                      {currentProfile.subscriptions.length}
+                    </span>{" "}
                     <span className="text-muted-foreground">Subscriptions</span>
                   </div>
                 </div>
               </div>
 
-              <TangibleButton>
+              <TangibleButton onClick={() => navigate("/profile/edit")}>
                 Edit Profile
               </TangibleButton>
             </div>
@@ -141,13 +153,13 @@ export const ProfilePage = () => {
               transition={{ delay: 0.4 + index * 0.1 }}
             >
               <TangibleCard
-                color={profile.type === 'personal' ? 'purple' : 'green'}
+                color={profile.type === "personal" ? "purple" : "green"}
                 className="hover:border-primary cursor-pointer transition-colors"
               >
                 <div className="flex items-start justify-between">
                   <div className="flex items-center gap-3">
                     <div className="rounded-full bg-foreground/10 p-3 backdrop-blur-sm">
-                      {profile.type === 'personal' ? (
+                      {profile.type === "personal" ? (
                         <User className="h-6 w-6 text-foreground" />
                       ) : (
                         <Users className="h-6 w-6" />
